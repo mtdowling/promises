@@ -12,6 +12,7 @@ namespace GuzzleHttp\Promise;
  * the reason why the promise cannot be fulfilled.
  *
  * @see https://promisesaplus.com/
+ * @template T
  */
 interface PromiseInterface
 {
@@ -25,6 +26,7 @@ interface PromiseInterface
      *
      * @param callable $onFulfilled Invoked when the promise fulfills.
      * @param callable $onRejected  Invoked when the promise is rejected.
+     * @return PromiseInterface<T>
      */
     public function then(
         ?callable $onFulfilled = null,
@@ -82,7 +84,7 @@ interface PromiseInterface
      *
      * If the promise cannot be waited on, then the promise will be rejected.
      *
-     * @return mixed
+     * @return T|PromiseInterface<T>
      *
      * @throws \LogicException if the promise has no wait function or if the
      *                         promise does not settle after waiting.
